@@ -1,7 +1,8 @@
-async function getData(poke) {
+async function fetchCocktails(cocktail) {
   try {
-    // get data from api
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${poke}`);
+    const response = await fetch(
+      `www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktail}`
+    );
     if (response.status != 200) {
       throw new Error(response);
     } else {
@@ -13,4 +14,4 @@ async function getData(poke) {
     console.log(error);
   }
 }
-getData("squirtle");
+fetchCocktails("margarita");
