@@ -1,8 +1,9 @@
 async function fetchCocktails(cocktail) {
   try {
     const response = await fetch(
-      `www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktail}`
+      `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktail}?apiKey=${api_key}`
     );
+    const api_key = "1";
     if (response.status != 200) {
       throw new Error(response);
     } else {
@@ -14,4 +15,4 @@ async function fetchCocktails(cocktail) {
     console.log(error);
   }
 }
-fetchCocktails("margarita");
+fetchCocktails("Margarita");
