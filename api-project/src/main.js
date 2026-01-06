@@ -1,9 +1,9 @@
 async function fetchCocktails(cocktail) {
   try {
     const response = await fetch(
-      `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${cocktail}?apiKey=${api_key}`
+      `https://api.disneyapi.dev/character/${cocktail}`
     );
-    const api_key = "1";
+
     if (response.status != 200) {
       throw new Error(response);
     } else {
@@ -15,4 +15,4 @@ async function fetchCocktails(cocktail) {
     console.log(error);
   }
 }
-fetchCocktails("Margarita");
+fetchCocktails("308");
