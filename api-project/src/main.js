@@ -1,5 +1,3 @@
-const characters = {};
-
 async function fetchCharacters(chara) {
   try {
     const response = await fetch(
@@ -10,7 +8,7 @@ async function fetchCharacters(chara) {
       throw new Error(response);
     } else {
       const data = await response.json();
-      console.log(data.data.films);
+      console.log(data.data);
 
       document.getElementById("api-response").textContent = data.name;
     }
