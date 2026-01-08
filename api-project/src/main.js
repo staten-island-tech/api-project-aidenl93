@@ -1,24 +1,26 @@
-try {
-  const response = await fetch(`https://api.disneyapi.dev/character/`);
+async function getCharacters() {
+  try {
+    const response = await fetch(`https://api.disneyapi.dev/character/`);
 
-  if (response.status != 200) {
-    throw new Error(response);
-  } else {
-    const data = await response.json();
-    console.log(data.data);
+    if (response.status != 200) {
+      throw new Error(response);
+    } else {
+      const data = await response.json();
+      console.log(data.data);
 
-    document.getElementById("api-response").textContent = data.name;
+      document.getElementById("api-response").textContent = data.name;
+    }
+  } catch (error) {
+    console.log(error);
   }
-} catch (error) {
-  console.log(error);
 }
-
+getCharacters();
 const container = document.querySelector(".section");
 function inject(item) {
   container.insertAdjacentHTML(
     "afterbegin",
     `
-    
+    <h2></h2>
     <h2>${data.data.films}</h2>
     <h2>id: ${data.data._id}</h2>
     <h2></h2>
