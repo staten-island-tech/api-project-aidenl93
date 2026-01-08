@@ -18,7 +18,8 @@ function inject(item) {
   container.insertAdjacentHTML(
     "afterbegin",
     `
-    <h2></h2>
+    
+    <h2>${data.data.films}</h2>
     <h2>id: ${data.data._id}</h2>
     <h2></h2>
     `
