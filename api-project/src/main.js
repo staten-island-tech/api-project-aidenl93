@@ -1,29 +1,61 @@
+const container = document.querySelector(".section");
+
 async function getCharacters() {
   try {
-    const response = await fetch(`https://api.disneyapi.dev/character/`);
+    const response = await fetch("https://api.disneyapi.dev/character");
 
-    if (response.status != 200) {
-      throw new Error(response);
-    } else {
-      const data = await response.json();
-      console.log(data.data);
-
-      document.getElementById("api-response").textContent = data.name;
+    if (!response.ok) {
+      throw new Error("Request failed");
     }
+
+    const result = await response.json();
+
+    // loop through characters
+    result.data.forEach((character) => {
+      inject(character);
+    });
   } catch (error) {
     console.log(error);
   }
 }
-getCharacters();
-const container = document.querySelector(".section");
+
 function inject(item) {
   container.insertAdjacentHTML(
-    "afterbegin",
+    "beforeend",
     `
-    <h2></h2>
-    <h2>${data.data.films}</h2>
-    <h2>id: ${data.data._id}</h2>
-    <h2></h2>
+    <div class="character">
+      <h1>${item.name}</h1>
+      <p>ID: ${item._id}</p>
+      <p>Films: ${item.films || "no films"} </p>
+    </div>
     `
   );
+}
+
+getCharacters();
+
+const input = document.getElementById("search");
+const button = document.getElementById("searchBtn");
+
+async function searchCharacter(name) {
+  try {
+    const response = await fetch(
+      `https://api.disneyapi.dev/character?name=${name}`
+    );
+
+    if (!response.ok) throw new Error("Request failed");
+
+    const result = await response.json();
+
+    container.innerHTML = "";
+
+    if (result.data.length === 0) {
+      container.textContent = "none.";
+      return;
+    }
+
+    result.data.forEach(inject);
+  } catch (error) {
+    console.log(error);
+  }
 }
