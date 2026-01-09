@@ -11,16 +11,9 @@ async function getCharacters() {
     const result = await response.json();
 
     // loop through characters
-<<<<<<< HEAD
     result.data.forEach((character) => {
       inject(character);
     });
-=======
-    result.data.forEach(character => {
-      inject(character);
-    });
-
->>>>>>> fb8060ed279f4a7d670ad7afa9a65269ecf94f37
   } catch (error) {
     console.log(error);
   }
@@ -66,9 +59,3 @@ async function searchCharacter(name) {
     console.log(error);
   }
 }
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> fb8060ed279f4a7d670ad7afa9a65269ecf94f37
