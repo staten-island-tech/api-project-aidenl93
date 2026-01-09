@@ -39,23 +39,15 @@ const button = document.getElementById("searchBtn");
 
 async function searchCharacter(name) {
   try {
-    const response = await fetch(
-      `https://api.disneyapi.dev/character?name=${name}`
-    );
+    const response = await fetch("https://api.disneyapi.dev/character");
 
-    if (!response.ok) throw new Error("Request failed");
-
-    const result = await response.json();
-
-    container.innerHTML = "";
-
-    if (result.data.length === 0) {
-      container.textContent = "none.";
-      return;
+    if (!response.ok) {
+      throw new Error("Request failed");
     }
-
-    result.data.forEach(inject);
   } catch (error) {
     console.log(error);
   }
 }
+
+const SearchBarValue = input.value;
+// tuff
