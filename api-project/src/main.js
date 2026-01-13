@@ -80,7 +80,8 @@ async function searchCharacter(name) {
         <p class="text-gray-500 text-lg">No characters found.</p>
       `;
       return;
-    }
+    
+    } result.data.forEach(inject);
   } catch (error) {
     console.error(error);
   }
