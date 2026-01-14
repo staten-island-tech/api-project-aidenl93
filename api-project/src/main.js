@@ -10,7 +10,6 @@ async function getCharacters() {
 
     const result = await response.json();
 
-    // loop through characters
     result.data.forEach((character) => {
       inject(character);
     });
@@ -43,7 +42,7 @@ function inject(item) {
       </p>
 
       <p class="text-sm">
-        <span class="font-semibold">Films:</span><br>
+        <span class="font-semibold">
         ${item.films}
       </p>
       
@@ -66,7 +65,7 @@ async function searchCharacter(name) {
 
   try {
     const response = await fetch(
-      `https://api.disneyapi.dev/character?name=${encodeURIComponent(name)}`
+      `https://api.disneyapi.dev/character?name=${name}`
     );
 
     if (!response.ok) throw new Error("Request failed");
@@ -81,17 +80,12 @@ async function searchCharacter(name) {
       `;
       return;
     }
+    result.data.forEach(inject);
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 }
 
 button.addEventListener("click", () => {
   searchCharacter(input.value);
-});
-
-input.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    searchCharacter(input.value);
-  }
 });
